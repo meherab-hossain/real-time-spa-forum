@@ -16,7 +16,10 @@ class CategoryResource extends JsonResource
     {
         return [
             'name'=>$this->name,
-            'id'=>$this->id
+            'slug'=>$this->slug,
+            'id'=>$this->id,
+			'created_at'=>$this->created_at->diffForHumans(),
+			'updated_at'=>$this->created_at->diffForHumans(),
         ];
     }
 }

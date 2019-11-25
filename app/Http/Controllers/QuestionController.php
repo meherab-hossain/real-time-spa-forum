@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\QuestionResource;
 use App\Model\Question;
 use Illuminate\Http\Request;
@@ -28,8 +28,14 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-       // auth()->user()->questions()->create($request->all());
-        Question::create($request->all());
+		//$request['slug']= str_slug($request->title);
+
+       // Auth::user()->questions()->create($request->all());
+       // Question::create($request->all());*/
+        $question = auth()->user()->questions()->create($request->all());
+
+        return response(new QuestionResource($question), Response::HTTP_CREATED);
+
     }
 
     public function show(Question $question)
