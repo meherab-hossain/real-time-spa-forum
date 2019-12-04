@@ -23,6 +23,9 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+const JwtToken = 'Bearer ' + localStorage.getItem('token')
+window.axios.defaults.headers.common['Authorization'] = JwtToken;
+
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -43,13 +46,20 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
+/*import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key:"1003fad2dc20617b5ff8",
-    cluster: "ap2",
-    encrypted: true
-});
+    key:"myKey",
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    disableStats: true,
+    auth:{
+        headers:{
+            Authorization : JwtToken
+        }
+    }
+
+});*/
