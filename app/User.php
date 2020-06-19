@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Model\Question;
+use App\Model\Reply;
 use App\Model\Role;
 
 use Illuminate\Notifications\Notifiable;
@@ -47,6 +48,9 @@ class User extends Authenticatable implements JWTSubject
     public function questions(){
         return $this->hasMany(Question::class);
     }
+    /*public function replies(){
+        return $this->hasMany(Reply::class);
+    }*/
     public function role(){
         return $this->belongsTo(Role::class);
     }

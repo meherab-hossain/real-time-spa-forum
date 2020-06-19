@@ -16,8 +16,8 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $question=Question::latest()->get();
-        return QuestionResource::collection($question);
+       // $question=Question::latest()->get();
+        return QuestionResource::collection(Question::latest()->paginate(5));
     }
 
 

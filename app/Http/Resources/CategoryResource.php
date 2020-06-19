@@ -18,6 +18,7 @@ class CategoryResource extends JsonResource
             'name'=>$this->name,
             'slug'=>$this->slug,
             'id'=>$this->id,
+            'category_question'=>QuestionResource::collection($this->question),
 			'created_at'=>$this->created_at->diffForHumans(),
 			'updated_at'=>$this->created_at->diffForHumans(),
         ];
