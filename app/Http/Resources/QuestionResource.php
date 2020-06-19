@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 
-class QuestionResource extends JsonResource
+
+class QuestionResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,9 @@ class QuestionResource extends JsonResource
         return [
             'title'=>$this->title,
             'path'=>$this->path,
-            'replies'=>ReplyResource::collection($this->replies),
+            'replies' => $this->when($this->needToInclude($request, 'question.user'), function () {
+                return  ReplyResource::collection($this->replies);
+            }),
             'reply_count'=>$this->replies->count(),
             'body'=>$this->body,
             'user'=>$this->user->name,
